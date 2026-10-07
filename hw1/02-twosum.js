@@ -42,6 +42,10 @@ function twoSum(nums, target) {
 }
 
 //Run and print each example
-console.log(JSON.stringify(twoSum([2, 7, 11, 15], 9)));
-console.log(JSON.stringify(twoSum([3, 2, 4], 6)));
-console.log(JSON.stringify(twoSum([3, 3], 6)));
+const a = twoSum([2, 7, 11, 15], 9); //Example 1
+const b = twoSum([3, 2, 4], 6);      //Example 2
+const c = twoSum([3, 3], 6);         //Example 3
+
+console.log(a);
+console.log(b);
+console.log(c);

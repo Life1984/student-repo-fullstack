@@ -47,6 +47,11 @@ function fizzBuzz(n) {
     return answer;
 }
 
-//Change 'n' to try a different input
-const n = 15;
-console.log(JSON.stringify(fizzBuzz(n)));
+//Run and print each example
+const a = fizzBuzz(3);  //Example 1
+const b = fizzBuzz(5);  //Exampe 2
+const c = fizzBuzz(15); //Example 3
+
+console.log(a);
+console.log(b);
+console.log(c);
