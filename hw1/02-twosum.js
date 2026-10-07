@@ -22,3 +22,26 @@ Input: nums = [3,3], target = 6
 Output: [0,1]
 
 **/
+
+function twoSum(nums, target) {
+  //Choose the first number in the pair
+  for (let i = 0; i < nums.length; i++) {
+
+    //Second number after the first
+    for (let j = i + 1; j < nums.length; j++) {
+
+      // Check if values add up to target
+      if (nums[i] + nums[j] === target) {
+        return [i, j];
+      }
+    }
+  }
+
+  //Return empty array if empty
+  return [];
+}
+
+//Run and print each example
+console.log(JSON.stringify(twoSum([2, 7, 11, 15], 9)));
+console.log(JSON.stringify(twoSum([3, 2, 4], 6)));
+console.log(JSON.stringify(twoSum([3, 3], 6)));
