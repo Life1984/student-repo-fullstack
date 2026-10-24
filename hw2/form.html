@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Homework 2 - Form Exercise</title>
+  </head>
+  <body>
+    <main>
+      <h1>Form Exercise</h1>
+
+      <form action="/submit" method="post" accept-charset="UTF-8">
+        <p>
+          <label for="username">Username</label><br />
+          <input type="text" id="username" name="username" required />
+        </p>
+
+        <p>
+          <label for="email">Email</label><br />
+          <input type="email" id="email" name="email" required />
+        </p>
+
+        <p>
+          <label for="comments">Comments</label><br />
+          <textarea id="comments" name="comments" rows="6" cols="40"></textarea>
+        </p>
+
+        <p>
+          <input
+            type="checkbox"
+            id="newsletter"
+            name="newsletter"
+            value="yes"
+          />
+          <label for="newsletter">Sign me up for the newsletter</label>
+        </p>
+
+        <button type="submit">Submit</button>
+      </form>
+    </main>
+  </body>
+</html>
