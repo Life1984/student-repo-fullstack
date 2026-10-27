@@ -1,4 +1,4 @@
-/** Exercise04 - Form **/
+/** Exercise04 - Form */
 const express = require('express');
 const path = require('path');
 

@@ -1,4 +1,4 @@
-/** Exercise02 - Node Routing **/
+/** Exercise02 - Node Routing */
 const http = require('http');
 
 const port = process.env.PORT || 5001;
@@ -20,10 +20,9 @@ const server = http.createServer((req, res) => {
     'redirected',
     'cache',
     'cookie',
-    'other',
   ];
 
-  // Match the path without its query string.
+  // Match the path without its query string
   const [pathname] = req.url.split('?');
   const route = routes.find((name) => pathname === `/${name}`);
 
@@ -36,7 +35,7 @@ const server = http.createServer((req, res) => {
       break;
 
     case 'redirect':
-      // The browser follows the destination in the Location header.
+      // The browser follows the destination in the Location header
       res.writeHead(302, { Location: '/redirected' });
       res.end();
       break;
@@ -50,7 +49,7 @@ const server = http.createServer((req, res) => {
     case 'cache':
       res.writeHead(200, {
         'Content-Type': 'text/html; charset=utf-8',
-        // Cache-Control uses seconds: one day is 24 * 60 * 60.
+        // Cache-Control uses seconds: one day is 24 * 60 * 60
         'Cache-Control': 'public, max-age=86400',
       });
       res.write('<p>this resource was cached</p>');
@@ -67,7 +66,7 @@ const server = http.createServer((req, res) => {
       break;
 
     default:
-      // Both /other and paths missing from the routes array end up here.
+      // Unmatched paths, including /other, end up here
       res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
       res.write('<h1>404 - page not found</h1>');
       res.end();

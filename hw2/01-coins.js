@@ -1,4 +1,13 @@
-/** Exercise 01 - Coins **/
+/** Exercise 01 - Coins */
+
+// These values and labels are shared by every change calculation.
+const denominations = [
+  { value: 100, singular: 'dollar', plural: 'dollars' },
+  { value: 25, singular: 'quarter', plural: 'quarters' },
+  { value: 10, singular: 'dime', plural: 'dimes' },
+  { value: 5, singular: 'nickel', plural: 'nickels' },
+  { value: 1, singular: 'penny', plural: 'pennies' },
+];
 
 // Add your function here
 const calculateChange = function calculateChange(amount) {
@@ -14,16 +23,10 @@ const calculateChange = function calculateChange(amount) {
     return 'Error: the number is too large';
   }
 
+  const change = [];
+
   // Use whole cents to avoid losing pennies during decimal calculations.
   let remainingCents = Math.round(amount * 100);
-  const denominations = [
-    { value: 100, singular: 'dollar', plural: 'dollars' },
-    { value: 25, singular: 'quarter', plural: 'quarters' },
-    { value: 10, singular: 'dime', plural: 'dimes' },
-    { value: 5, singular: 'nickel', plural: 'nickels' },
-    { value: 1, singular: 'penny', plural: 'pennies' },
-  ];
-  const change = [];
 
   // Calculate each denomination from largest to smallest.
   denominations.forEach(({ value, singular, plural }) => {

@@ -1,50 +1,82 @@
-/** Exercise03 - Express Routing **/
+/** Exercise03 - Express Routing */
 const express = require('express');
-const path = require('path');
-
-const port = process.env.PORT || 5001;
-
-// http://localhost:5001/form should return a form with input elements for username, email, and submit button
-
-// http://localhost:5001/submit should return all the data the user entered
 
 const app = express();
-const formPath = path.join(__dirname, 'form.html');
+const port = process.env.PORT || 5001;
 
-// Decode the fields sent by a standard HTML form.
-app.use(express.urlencoded({ extended: false }));
+// http://localhost:5001/welcome should return a status code 200 with a welcome message of your choice in html format
 
-app.get('/form', (req, res) => {
-  res.sendFile(formPath);
+// http://localhost:5001/redirect should redirect the request to '/redirected' by using 302 as the status code / the redirected page should return a redirected message of your choice
+
+// http://localhost:5001/cache should return 'this resource was cached' in html format and set the cache max age to a day
+
+// http://localhost:5001/cookie should return 'cookies… yummm' in plain text and set 'hello=world' as a cookie
+
+// For other routes, such as http://localhost:5001/other, this exercise should return a status code 404 with '404 - page not found' in html format
+
+const routes = [
+  'welcome',
+  'redirect',
+  'redirected',
+  'cache',
+  'cookie',
+];
+
+// Check paths before the original root handler so / also returns 404.
+app.use((req, res, next) => {
+  const route = req.path.slice(1);
+
+  if (!routes.includes(route)) {
+    res.status(404);
+    res.set({ 'Content-Type': 'text/html' });
+    res.send('<h1>404 - page not found</h1>');
+    return;
+  }
+
+  next();
 });
 
-app.post('/submit', (req, res) => {
-  const {
-    username = '',
-    email = '',
-    comments = '',
-    newsletter,
-  } = req.body || {};
+app.get('/', (req, res) => {
+  res.status(200);
+  res.set({ 'Content-Type': 'text/html' });
+  res.send('Express Routing Exercise');
+});
 
-  // An unchecked checkbox is omitted from the submitted form data.
-  const newsletterChoice = newsletter === 'yes' ? 'Yes' : 'No';
-  const result = [
-    'Form submission received',
-    `Username: ${username}`,
-    `Email: ${email}`,
-    `Comments: ${comments}`,
-    `Newsletter: ${newsletterChoice}`,
-  ].join('\n');
+// Add your code here
+app.get('/welcome', (req, res) => {
+  res.status(200);
+  res.set({ 'Content-Type': 'text/html' });
+  res.send('<h1>Welcome to my Express.js server!</h1>');
+});
 
-  // Plain text displays entered HTML characters literally.
+app.get('/redirect', (req, res) => {
+  res.redirect(302, '/redirected');
+});
+
+app.get('/redirected', (req, res) => {
+  res.status(200);
+  res.set({ 'Content-Type': 'text/html' });
+  res.send('<h1>You have reached the redirected page!</h1>');
+});
+
+app.get('/cache', (req, res) => {
   res.status(200);
   res.set({
-    'Content-Type': 'text/plain; charset=utf-8',
-    'Cache-Control': 'no-store',
+    'Content-Type': 'text/html',
+    // One day expressed in seconds.
+    'Cache-Control': 'public, max-age=86400',
   });
-  res.send(result);
+  res.send('<p>this resource was cached</p>');
 });
 
+app.get('/cookie', (req, res) => {
+  res.status(200);
+  res.set({ 'Content-Type': 'text/plain' });
+  res.cookie('hello', 'world', { path: '/' });
+  res.send('cookies… yummm');
+});
+
+// Keep this last to handle requests without a matching handler.
 app.use((req, res) => {
   res.status(404);
   res.set({ 'Content-Type': 'text/html' });
@@ -52,5 +84,5 @@ app.use((req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}/form`);
+  console.log(`Server running at http://localhost:${port}`);
 });
