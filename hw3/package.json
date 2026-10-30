@@ -1,0 +1,26 @@
+{
+  "name": "hw3-react-typescript",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "react": "vite react --port 5173 --strictPort",
+    "build": "vite build react",
+    "typescript": "tsc -p typescript/tsconfig.json && node typescript/dist/index.js",
+    "check": "tsc -p typescript/tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "typescript": "5.9.3",
+    "vite": "8.3.5"
+  }
+}
+
