@@ -66,20 +66,23 @@ Stop the development server with Ctrl+C.
 
 ---
 
-## Checks
+## Screenshots of Website
 
-```bash
-npm run lint
-npm run build
-```
+### Home Page
 
-To preview the production build:
+![Rick and Morty home page](images/Home_Page.PNG)
 
-```bash
-npm run preview
-```
+### Characters Page
 
-Open http://localhost:4174/home.
+![First 100 characters with their images and details](images/Characters_Page.PNG)
+
+### Species Page
+
+![Characters grouped by species with counts and names](images/Species_Page.PNG)
+
+### Locations Page
+
+![Location counts grouped by type](images/Locations_Page.PNG)
 
 ---
 
