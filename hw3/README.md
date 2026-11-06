@@ -27,11 +27,11 @@ Press Ctrl+C in the terminal to stop the server.
 
 ---
 
-## Typescript Exercises
+## TypeScript Exercises
 
 The following files (index-index8.ts) are the solution files that solve the
 problem on the provided site: 
 
-[Typescript Exercises](https://typescript-exercises.github.io/#exercise=1&file=%2Findex.ts)
+[TypeScript Exercises](https://typescript-exercises.github.io/#exercise=1&file=%2Findex.ts)
 
 ---
