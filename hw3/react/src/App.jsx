@@ -7,6 +7,9 @@ import { useState } from 'react';
 Keep the winner helper in the same file as the tutorial's components
 (Declaring it first avoids using the function before its definition)
 */
+//FIXED: For your accessibility question, could you give each square an 
+// accessible label with its position and value? That would help screen 
+// reader users identify the empty squares.
 const calculateWinner = function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
@@ -19,23 +22,28 @@ const calculateWinner = function calculateWinner(squares) {
     [2, 4, 6],
   ];
 
-  //Each entry describes one possible winning row, column, or diagonal
-  for (let i = 0; i < lines.length; i += 1) {
-    const [a, b, c] = lines[i];
+  // Find the first occupied row, column, or diagonal whose symbols match.
+  const winningLine = lines.find(([a, b, c]) => (
+    squares[a] && squares[a] === squares[b] && squares[a] === squares[c]
+  ));
 
-    //The first square MUST be occupied, and all three symbols must match
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-
-  return null;
+  // Preserve the tutorial's return value: the winning symbol, or null.
+  return winningLine ? squares[winningLine[0]] : null;
 };
 
-function Square({ value, onSquareClick }) {
-  //The parent supplies both the displayed symbol and the click handler
+function Square({ value, onSquareClick, position }) {
+  // position is the zero-based index used by the board's squares array.
+  const row = Math.floor(position / 3) + 1;
+  const column = (position % 3) + 1;
+
+  // Announce both the location and the content, including empty squares.
   return (
-    <button type="button" className="square" onClick={onSquareClick}>
+    <button
+      type="button"
+      className="square"
+      onClick={onSquareClick}
+      aria-label={`Row ${row}, column ${column}: ${value || 'empty'}`}
+    >
       {value}
     </button>
   );
